@@ -42,10 +42,14 @@ export const todosSlice = createSlice({
 			const foundTodo = state.todos.find((todo) => todo.id === action.payload);
 			foundTodo && state.todos.splice(state.todos.indexOf(foundTodo), 1);
 		},
+		checkTodo: (state, action) => {
+			const foundTodo = state.todos.find((todo) => todo.id === action.payload);
+			foundTodo.completed = !foundTodo.completed;
+		},
 	},
 });
 
-export const { initialsTodos, addTodo, deleteTodo, editTodo } =
+export const { initialsTodos, addTodo, deleteTodo, editTodo, checkTodo } =
 	todosSlice.actions;
 
 export default todosSlice.reducer;
