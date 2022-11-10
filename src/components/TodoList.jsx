@@ -21,7 +21,7 @@ const TodoList = () => {
 			) : ( */}
 			<div className=" w-4/6 px-10 mb-16">
 				<Link to="/create-todo">
-					<button className="text-center bg-green-600 rounded-md w-28 h-8 hover:bg-green-700 text-gray-100 hover:text-gray-50">
+					<button className="text-center bg-green-600 rounded-md w-20 h-8 hover:bg-green-700 text-gray-100 hover:text-gray-50">
 						Create
 					</button>
 				</Link>
