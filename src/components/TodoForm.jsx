@@ -65,7 +65,7 @@ const TodoForm = () => {
 					name="description"
 					value={todo.description}
 				/>
-				<button className="bg-green-600 rounded-md w-28 h-8 hover:bg-green-700 text-gray-100 hover:text-gray-50 self-center">
+				<button className="bg-green-600 rounded-md w-20 h-8 hover:bg-green-700 text-gray-100 hover:text-gray-50 self-center">
 					{params.id ? "Edit" : "Create"}
 				</button>
 			</div>
