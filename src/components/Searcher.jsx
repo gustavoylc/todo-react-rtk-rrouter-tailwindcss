@@ -1,6 +1,7 @@
-// import { getSearch, initialsTodos } from "@actions";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+
+import { fetchGetTodoList, fetchSearchTodo } from "@features/todos/todosSlice";
 
 const Searcher = () => {
 	const [searchValue, setSearchValue] = useState("");
@@ -8,16 +9,16 @@ const Searcher = () => {
 	const dispatch = useDispatch();
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// dispatch(getSearch(searchValue));
+		dispatch(fetchSearchTodo(searchValue));
 	};
 
 	const handleSearchValueChange = () => {
 		setSearchValue(searchRef.current.value);
-		// searchRef.current.value === "" && dispatch(initialsTodos());
+		searchRef.current.value === "" && dispatch(fetchGetTodoList());
 	};
 
 	return (
-		<div className="absolute top-6 right-10">
+		<div className="absolute top-4 right-5 z-20">
 			<form onSubmit={handleSubmit}>
 				<div className="relative text-gray-600 focus-within:text-gray-400 hover:shadow-xl transform hover:scale-105 transition duration-500">
 					<span className="absolute inset-y-0 left-0 flex items-center pl-2">
