@@ -12,6 +12,7 @@
         "^@actions/(.*)$",
         "^@reducers/(.*)$",
         "^@middlewares/(.*)$",
+        "^@hooks/(.*)$",
         "^@app/(.*)$",
         "^@features/(.*)$",
         "^[./]"
