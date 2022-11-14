@@ -1,15 +1,15 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { checkTodo, deleteTodo } from "@features/todos/todosSlice";
+import { fetchDeleteTodo, fetchEditTodo } from "@features/todos/todosSlice";
 
 const TodoItem = ({ todo }) => {
 	const dispatch = useDispatch();
 	const handleDelete = (id) => {
-		dispatch(deleteTodo(id));
+		dispatch(fetchDeleteTodo(id));
 	};
-	const handleCheck = (id) => {
-		dispatch(checkTodo(id));
+	const handleCheck = (editTodo) => {
+		dispatch(fetchEditTodo({ ...editTodo, completed: !editTodo.completed }));
 	};
 	return (
 		<li className="bg-neutral-800 my-2 p-3 rounded-lg grid grid-cols-[auto_1fr_auto_auto] items-center gap-4">
@@ -21,13 +21,13 @@ const TodoItem = ({ todo }) => {
 			<div>
 				<p
 					className={`${todo.completed && "line-through"} hover:cursor-pointer`}
-					onClick={() => handleCheck(todo.id)}
+					onClick={() => handleCheck(todo)}
 				>
 					{todo.title}
 				</p>
 				<p
 					className={`${todo.completed && "line-through"} hover:cursor-pointer`}
-					onClick={() => handleCheck(todo.id)}
+					onClick={() => handleCheck(todo)}
 				>
 					{todo?.description}
 				</p>
