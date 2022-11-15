@@ -13,6 +13,8 @@
         "^@reducers/(.*)$",
         "^@middlewares/(.*)$",
         "^@hooks/(.*)$",
+        "^@router/(.*)$",
+        "^@layout/(.*)$",
         "^@app/(.*)$",
         "^@features/(.*)$",
         "^[./]"
