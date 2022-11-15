@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom";
 
+
+
 import { useAuth } from "@hooks/useAuth";
+
 
 const Menu = () => {
 	const auth = useAuth();
@@ -43,6 +46,11 @@ routes.push({
 routes.push({
 	to: "/faq",
 	text: "FAQ",
+	private: false,
+});
+routes.push({
+	to: "/blog",
+	text: "Blog",
 	private: false,
 });
 routes.push({
