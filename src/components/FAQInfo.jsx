@@ -15,7 +15,7 @@ const FAQInfo = () => {
 	};
 
 	return (
-		<div className="grid gap-4">
+		<div className="grid gap-4 mt-24 px-5">
 			<h2>{foundFAQ.title}</h2>
 			<button
 				onClick={returnToFAQ}
