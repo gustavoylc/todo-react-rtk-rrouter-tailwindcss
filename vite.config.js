@@ -34,6 +34,14 @@ export default defineConfig({
 				find: "@hooks",
 				replacement: path.resolve(__dirname, "src/hooks"),
 			},
+			{
+				find: "@router",
+				replacement: path.resolve(__dirname, "src/router"),
+			},
+			{
+				find: "@layout",
+				replacement: path.resolve(__dirname, "src/layout"),
+			},
 		],
 	},
 });
