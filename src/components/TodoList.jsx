@@ -1,22 +1,23 @@
-import { useEffect } from "react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { Loading } from "@components/Loading";
 import { TodoItem } from "@components/TodoItem";
 
-import { fetchGetTodoList } from "@features/todos/todosSlice";
+import { useGetTodoListQuery } from "@features/todos/api/apiSlice";
 
 const TodoList = () => {
-	const todos = useSelector((state) => state.todosData.todos, shallowEqual);
-	const loading = useSelector((state) => state.todosUi.loading);
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(fetchGetTodoList());
-	}, []);
+	const {
+		data: todos,
+		isLoading,
+		error,
+	} = useGetTodoListQuery(undefined, {
+		// pollingInterval: 3000
+		// skip: true
+	});
 	return (
 		<>
-			{loading ? (
+			{error && <h3>{error.error}</h3>}
+			{isLoading ? (
 				<Loading />
 			) : (
 				<div className=" w-4/6 px-10 mb-16">
