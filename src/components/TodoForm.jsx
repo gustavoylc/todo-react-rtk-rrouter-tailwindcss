@@ -1,30 +1,34 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-
-
-import { fetchAddTodo, fetchEditTodo } from "@features/todos/todosSlice";
-
+import {
+	apiSlice,
+	useAddTodoMutation,
+	useUpdateTodoMutation,
+} from "@features/todos/api/apiSlice";
 
 const TodoForm = () => {
+	const { data: todos } = useSelector(apiSlice.endpoints.getTodoList.select());
+	const [addTodo] = useAddTodoMutation();
+	const [updateTodo] = useUpdateTodoMutation();
+
 	const [todo, setTodo] = useState({
 		title: "",
 		description: "",
 	});
-	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const params = useParams();
-	const todos = useSelector((state) => state.todosData.todos);
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		let titleValue = todo.title;
-		if (todo.description) {
-			titleValue = todo.title + " - description: " + todo.description;
-		}
 		params.id
-			? dispatch(fetchEditTodo({ ...todo, title: titleValue }))
-			: dispatch(fetchAddTodo(titleValue));
+			? updateTodo(todo)
+			: addTodo({
+					title: todo.title,
+					description: todo.description,
+					completed: false,
+					userId: 1,
+			  });
 		navigate("/todos");
 	};
 
@@ -44,8 +48,9 @@ const TodoForm = () => {
 	}, []);
 
 	const handleReturn = () => {
-		navigate(-1)
+		navigate(-1);
 	};
+
 	return (
 		<form
 			onSubmit={handleSubmit}
@@ -74,7 +79,11 @@ const TodoForm = () => {
 					<button className="bg-green-600 rounded-md w-20 h-8 hover:bg-green-700 text-gray-100 hover:text-gray-50 self-center">
 						{params.id ? "Edit" : "Create"}
 					</button>
-					<button className="bg-zinc-600 rounded-md w-20 h-8 hover:bg-zinc-700 text-gray-100 hover:text-gray-50 self-center" onClick={handleReturn}>
+					<button
+						type="button"
+						className="bg-zinc-600 rounded-md w-20 h-8 hover:bg-zinc-700 text-gray-100 hover:text-gray-50 self-center"
+						onClick={handleReturn}
+					>
 						Volver
 					</button>
 				</div>
