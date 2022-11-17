@@ -1,35 +1,39 @@
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchDeleteTodo, fetchEditTodo } from "@features/todos/todosSlice";
+import {
+	useDeleteTodoMutation,
+	useUpdateTodoMutation,
+} from "@features/todos/api/apiSlice";
 
 const TodoItem = ({ todo }) => {
-	const dispatch = useDispatch();
+	const [updateTodo] = useUpdateTodoMutation();
+	const [deleteTodo] = useDeleteTodoMutation();
+
 	const handleDelete = (id) => {
-		dispatch(fetchDeleteTodo(id));
+		deleteTodo(id);
 	};
 	const handleCheck = (editTodo) => {
-		dispatch(fetchEditTodo({ ...editTodo, completed: !editTodo.completed }));
+		updateTodo({ ...editTodo, completed: !editTodo.completed });
 	};
 	return (
 		<li className="bg-neutral-800 my-2 p-3 rounded-lg grid grid-cols-[auto_1fr_auto_auto] items-center gap-4">
 			<input
 				type="checkbox"
 				checked={todo.completed}
-				onChange={() => handleCheck(todo.id)}
+				onChange={() => handleCheck(todo)}
 			/>
 			<div>
 				<p
 					className={`${todo.completed && "line-through"} hover:cursor-pointer`}
 					onClick={() => handleCheck(todo)}
 				>
-					{todo.title}
+					{todo.id} - {todo.title}
 				</p>
 				<p
 					className={`${todo.completed && "line-through"} hover:cursor-pointer`}
 					onClick={() => handleCheck(todo)}
 				>
-					{todo?.description}
+					description: {todo.description}
 				</p>
 			</div>
 			<Link to={`/edit-todo/${todo.id}`}>
