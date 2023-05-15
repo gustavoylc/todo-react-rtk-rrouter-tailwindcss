@@ -13,4 +13,4 @@ This app was built to show the very basic use of React bootstrapped with Vite, R
 A menu is shown with which you can access the different links of the application using these technologies, in the case of TODO it contains a CRUD to interact with it.
 
 ![Home preview](./public/home.jpg)
-![Home preview](./public/todo.jpg)
+![TODO preview](./public/todo.jpg)
